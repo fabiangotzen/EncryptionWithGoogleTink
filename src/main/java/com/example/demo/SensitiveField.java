@@ -9,7 +9,7 @@ public class SensitiveField {
     private String cipherText;
 
     public String getPlainText(CryptoService cryptoService, String associatedData) {
-        if (StringUtils.hasText(this.plainText) || !StringUtils.hasText(this.cipherText)) {
+        if (!StringUtils.hasText(this.plainText) && StringUtils.hasText(this.cipherText)) {
             this.plainText = cryptoService.decrypt(this.cipherText, associatedData);
         }
         return this.plainText;
